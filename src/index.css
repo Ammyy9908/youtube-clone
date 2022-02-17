@@ -1,13 +1,68 @@
+:root {
+  --primary-color: #ff0000;
+  --text-color: #19202c;
+  --text-color--light: #c2c2c2;
+  --form-background: #ebebeb;
+  --background-color: #ffffff;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Mulish", sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color: var(--text-color);
+}
+
+/*Hide scrollbars*/
+::-webkit-scrollbar {
+  width: 0px;
+}
+/**Dark mode**/
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --primary-color: #ff0000;
+    --text-color: #19202c;
+    --text-color--light: #c2c2c2; */
+    --background-color: #272727;
+    --text-color: #ffffff;
+  }
+  .dark .logo span {
+    background-image: url("./logo_white.png") !important;
+  }
+
+  .menu-btn svg path {
+    fill: #fff;
+  }
+}
+
+.dark .logo span {
+  background-image: url("./logo_white.png") !important;
+}
+
+.dark {
+  --background-color: #272727;
+  --text-color: #ffffff;
+}
+.dark .menu-btn svg path {
+  fill: #fff;
 }

@@ -1,25 +1,98 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Channel from "./Pages/Channel";
+// import "./debug.css";
+import React from "react";
+import Home from "./Pages/Home";
 
-function App() {
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+import getUser from "./utils/getUser";
+import { connect } from "react-redux";
+import getSubscriptions from "./utils/getSubscriptions";
+import getChannelVideos from "./utils/getChannelVideos";
+import VideoDetail from "./Pages/VideoDetail";
+
+function App({ setUser, setSubscriptions, setRandomChannel }) {
+  React.useEffect(() => {
+    if (Cookies.get("token")) {
+      getUser()
+        .then((user) => {
+          console.log(user);
+          setUser(user);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      getSubscriptions()
+        .then((subscriptions) => {
+          setSubscriptions(subscriptions);
+          return subscriptions;
+        })
+        .then((subscriptions) => {
+          let subscription =
+            subscriptions[
+              Math.floor(Math.random() * (0, subscriptions.length))
+            ];
+
+          getChannelVideos(subscription.snippet.resourceId.channelId)
+            .then((data) => {
+              console.log(data);
+              const videos = data;
+              const { title, thumbnails } = subscription.snippet;
+              const { channelId } = subscription.snippet.resourceId;
+              const resObj = {
+                title: title,
+                id: channelId,
+                picture: thumbnails.default.url,
+                videos: videos,
+              };
+              setRandomChannel(resObj);
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route
+            exact
+            path="/channel/:cid"
+            render={(props) => {
+              const cid = props.match.params.cid;
+              return <Channel cid={cid && cid} />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/watch"
+            render={(props) => {
+              return <VideoDetail />;
+            }}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch({ type: "SET_USER", user }),
+  setSubscriptions: (subscriptions) =>
+    dispatch({ type: "SET_SUBSCRIPTIONS", subscriptions }),
+  setRandomChannel: (randomChannel) =>
+    dispatch({ type: "SET_RANDOM_CHANNEL", randomChannel }),
+});
+export default connect(null, mapDispatchToProps)(App);

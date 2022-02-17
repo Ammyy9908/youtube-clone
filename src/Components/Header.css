@@ -1,0 +1,133 @@
+header {
+  width: 100%;
+  height: 55px;
+}
+
+.logo span {
+  display: inline-block;
+  width: 116px;
+  height: 25px;
+  background-image: url("./logo_black.png");
+}
+
+.header-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  margin: 15px auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 65px;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.header-left-left {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+.header-search {
+  width: 730px;
+  height: 44px;
+  background-color: var(--form-background);
+  display: flex;
+  align-items: center;
+  border-radius: 22px;
+  justify-content: space-between;
+  gap: 12px;
+}
+.header-search input {
+  width: 91%;
+  height: 90%;
+  margin-left: auto;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+.header-search input::placeholder {
+  color: #30384c;
+}
+.header-search span {
+  display: block;
+  margin-right: auto;
+}
+
+.header-right-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-right-left button {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.header-right-left button img {
+  width: 23px;
+  height: 23px;
+}
+.header-right-left button span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  width: 18px;
+  height: 18px;
+  color: #fff;
+  position: absolute;
+  border-radius: 50%;
+  font-weight: 600;
+  top: 5px;
+  right: 5px;
+}
+.header-right-left button:hover {
+  background-color: #d1d1d183;
+  opacity: 0.8;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  border: 0;
+  outline: 0;
+  width: 95px;
+  height: 39px;
+  border-radius: 3px;
+  font-weight: bolder;
+  color: #fff;
+}
