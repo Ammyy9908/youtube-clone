@@ -60,7 +60,7 @@ function RecommendationCard({ title, time, author, cover }) {
     </div>
   );
 }
-function Home({ randomChannel }) {
+function Home({ randomChannel, popular_videos }) {
   const [dark, setDark] = React.useState(false);
   console.log(randomChannel);
   return (
@@ -126,6 +126,25 @@ function Home({ randomChannel }) {
                 author="Gussie French"
               />
             </div>
+
+            {popular_videos && (
+              <div className="popular-videos-wrapper">
+                <div className="popular-videos">
+                  {popular_videos.map((video, index) => {
+                    return (
+                      <MyVideoComponent
+                        cover={video.snippet.thumbnails.medium.url}
+                        key={index}
+                        time={video.snippet.publishedAt}
+                        title={video.snippet.title}
+                        author={video.snippet.channelTitle}
+                        id={video.id}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -135,5 +154,6 @@ function Home({ randomChannel }) {
 
 const mapStateToProps = (state) => ({
   randomChannel: state.appReducer.randomChannel,
+  popular_videos: state.appReducer.popular_videos,
 });
 export default connect(mapStateToProps, null)(Home);

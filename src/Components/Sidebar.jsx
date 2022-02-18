@@ -10,22 +10,68 @@ function Sidebar({ subscriptions, user }) {
         <div className="sidebar-top">
           <div className="sidebar-options">
             <div className="top-options">
-              <Option icon="/home_colored.svg" title="Home" isActive={true} />
-              <Option icon="/fire.svg" title="Trending" isActive={false} />
+              <Option
+                icon="/home_colored.svg"
+                title="Home"
+                isActive={true}
+                path="/"
+              />
+              <Option
+                icon="/fire.svg"
+                title="Explore"
+                isActive={false}
+                path="/explore"
+              />
               <Option
                 icon="/subscription.svg"
                 title="Subscriptions"
                 isActive={false}
+                path="/subscriptions"
               />
             </div>
             <div className="secondary-options">
-              <Option icon="/file.svg" title="Library" isActive={false} />
-              <Option icon="/logs.svg" title="History" isActive={false} />
-              <Option icon="/clock.svg" title="Watch Later" isActive={false} />
-              <Option icon="/star.svg" title="Favourites" isActive={false} />
-              <Option icon="/like.svg" title="Liked Videos" isActive={false} />
-              <Option icon="/note.svg" title="Music" isActive={false} />
-              <Option icon="/game_remote.svg" title="Games" isActive={false} />
+              <Option
+                icon="/file.svg"
+                title="Library"
+                isActive={false}
+                path="/"
+              />
+              <Option
+                icon="/logs.svg"
+                title="History"
+                isActive={false}
+                path="/history"
+              />
+              <Option
+                icon="/clock.svg"
+                title="Watch Later"
+                isActive={false}
+                path="/later"
+              />
+              <Option
+                icon="/star.svg"
+                title="Favourites"
+                isActive={false}
+                path="/favorite"
+              />
+              <Option
+                icon="/like.svg"
+                title="Liked Videos"
+                isActive={false}
+                path="/liked"
+              />
+              <Option
+                icon="/note.svg"
+                title="Music"
+                isActive={false}
+                path="/music"
+              />
+              <Option
+                icon="/game_remote.svg"
+                title="Games"
+                isActive={false}
+                path="/gaming"
+              />
             </div>
           </div>
           {user && (

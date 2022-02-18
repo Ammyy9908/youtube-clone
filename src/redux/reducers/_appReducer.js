@@ -2,6 +2,7 @@ const initialState = {
   user: null,
   subscriptions: null,
   randomChannel: null,
+  popular_videos: null,
 };
 
 export default function AppReducer(state = initialState, action) {
@@ -21,6 +22,12 @@ export default function AppReducer(state = initialState, action) {
       return {
         ...state,
         randomChannel: action.randomChannel,
+      };
+
+    case "SET_POPULAR_VIDEOS":
+      return {
+        ...state,
+        popular_videos: action.popular_videos,
       };
     default:
       return state;

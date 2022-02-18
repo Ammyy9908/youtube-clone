@@ -32,6 +32,10 @@ span {
   color: var(--text-color);
 }
 
+a {
+  text-decoration: none;
+}
+
 /*Hide scrollbars*/
 ::-webkit-scrollbar {
   width: 0px;

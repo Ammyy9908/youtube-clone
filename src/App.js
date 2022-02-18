@@ -11,8 +11,15 @@ import { connect } from "react-redux";
 import getSubscriptions from "./utils/getSubscriptions";
 import getChannelVideos from "./utils/getChannelVideos";
 import VideoDetail from "./Pages/VideoDetail";
+import ExplorePage from "./Pages/ExplorePage";
+import get_popular_videos from "./utils/getPopularVideos";
 
-function App({ setUser, setSubscriptions, setRandomChannel }) {
+function App({
+  setUser,
+  setSubscriptions,
+  setRandomChannel,
+  setPopularVideos,
+}) {
   React.useEffect(() => {
     if (Cookies.get("token")) {
       getUser()
@@ -56,6 +63,17 @@ function App({ setUser, setSubscriptions, setRandomChannel }) {
         .catch((e) => {
           console.log(e);
         });
+
+      // get popular videos
+
+      get_popular_videos()
+        .then((videos) => {
+          console.log("Popular Videos", videos);
+          setPopularVideos(videos);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   });
   return (
@@ -64,6 +82,10 @@ function App({ setUser, setSubscriptions, setRandomChannel }) {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+
+          <Route exact path="/explore">
+            <ExplorePage />
           </Route>
 
           <Route
@@ -90,6 +112,8 @@ function App({ setUser, setSubscriptions, setRandomChannel }) {
 
 const mapDispatchToProps = (dispatch) => ({
   setUser: (user) => dispatch({ type: "SET_USER", user }),
+  setPopularVideos: (popular_videos) =>
+    dispatch({ type: "SET_POPULAR_VIDEOS", popular_videos }),
   setSubscriptions: (subscriptions) =>
     dispatch({ type: "SET_SUBSCRIPTIONS", subscriptions }),
   setRandomChannel: (randomChannel) =>
