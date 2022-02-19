@@ -13,14 +13,29 @@ import getChannelVideos from "./utils/getChannelVideos";
 import VideoDetail from "./Pages/VideoDetail";
 import ExplorePage from "./Pages/ExplorePage";
 import get_popular_videos from "./utils/getPopularVideos";
+import getLocalVideos from "./utils/getLocalVideos";
 
 function App({
   setUser,
   setSubscriptions,
   setRandomChannel,
   setPopularVideos,
+  setLocalVideos,
 }) {
   React.useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      getLocalVideos(lat, long)
+        .then((data) => {
+          console.log("LocalVideos", data);
+          const { items } = data;
+          setLocalVideos(items);
+        })
+        .catch((e) => {
+          console.log("LocalVideos Error", e);
+        });
+    });
     if (Cookies.get("token")) {
       getUser()
         .then((user) => {
@@ -118,5 +133,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "SET_SUBSCRIPTIONS", subscriptions }),
   setRandomChannel: (randomChannel) =>
     dispatch({ type: "SET_RANDOM_CHANNEL", randomChannel }),
+  setLocalVideos: (local_videos) =>
+    dispatch({ type: "SET_LOCAL_VIDEOS", local_videos }),
 });
 export default connect(null, mapDispatchToProps)(App);

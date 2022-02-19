@@ -103,12 +103,12 @@
 .home-body {
   width: 90%;
   margin: 0 auto;
-  max-height: 110vh;
+  max-height: 150vh;
   overflow-y: scroll;
 }
 
 .video-for-you-section-component {
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: flex-start;
   gap: 21px;
@@ -120,7 +120,8 @@
 }
 
 .your-videos,
-.popular-videos {
+.popular-videos,
+.local-videos {
   display: grid;
   gap: 22px;
   overflow-x: scroll;
@@ -247,7 +248,7 @@
     display: flex;
   }
   .video-for-you-section-component {
-    width: 95%;
+    width: 90%;
   }
   .home-body {
     width: 100%;

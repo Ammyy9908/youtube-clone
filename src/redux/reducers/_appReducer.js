@@ -3,6 +3,7 @@ const initialState = {
   subscriptions: null,
   randomChannel: null,
   popular_videos: null,
+  local_videos: null,
 };
 
 export default function AppReducer(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function AppReducer(state = initialState, action) {
       return {
         ...state,
         user: action.user,
+      };
+    case "SET_LOCAL_VIDEOS":
+      return {
+        ...state,
+        local_videos: action.local_videos,
       };
 
     case "SET_SUBSCRIPTIONS":

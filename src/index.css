@@ -3,7 +3,8 @@
   --text-color: #19202c;
   --text-color--light: #c2c2c2;
   --form-background: #ebebeb;
-  --background-color: #ffffff;
+  --background-color: #f9f9f9;
+  --category-card: #fff;
 }
 body {
   margin: 0;
@@ -66,6 +67,7 @@ a {
 .dark {
   --background-color: #272727;
   --text-color: #ffffff;
+  --category-card: #161616;
 }
 .dark .menu-btn svg path {
   fill: #fff;

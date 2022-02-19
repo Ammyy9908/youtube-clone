@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import TimeAgo from "javascript-time-ago";
+// eslint-disable-next-line
 import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import "./Home.css";
@@ -60,7 +61,7 @@ function RecommendationCard({ title, time, author, cover }) {
     </div>
   );
 }
-function Home({ randomChannel, popular_videos }) {
+function Home({ randomChannel, popular_videos, local_videos }) {
   const [dark, setDark] = React.useState(false);
   console.log(randomChannel);
   return (
@@ -127,10 +128,10 @@ function Home({ randomChannel, popular_videos }) {
               />
             </div>
 
-            {popular_videos && (
+            {popular_videos && local_videos && (
               <div className="popular-videos-wrapper">
                 <div className="popular-videos">
-                  {popular_videos.map((video, index) => {
+                  {[...popular_videos, ...local_videos].map((video, index) => {
                     return (
                       <MyVideoComponent
                         cover={video.snippet.thumbnails.medium.url}
@@ -155,5 +156,6 @@ function Home({ randomChannel, popular_videos }) {
 const mapStateToProps = (state) => ({
   randomChannel: state.appReducer.randomChannel,
   popular_videos: state.appReducer.popular_videos,
+  local_videos: state.appReducer.local_videos,
 });
 export default connect(mapStateToProps, null)(Home);

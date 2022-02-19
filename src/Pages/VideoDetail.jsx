@@ -284,7 +284,7 @@ function VideoDetail({ subscriptions, user }) {
                     .map((tag) => {
                       return (
                         <span className="tag" key={tag}>
-                          <a href="#">#{tag + " "}</a>
+                          <a href="#viewtag">#{tag + " "}</a>
                         </span>
                       );
                     })}
