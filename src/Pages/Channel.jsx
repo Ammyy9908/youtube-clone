@@ -87,14 +87,14 @@ function Channel({ cid }) {
             <div className="channel-subheader">
               <div className="channel-subheader-left">
                 <div className="channel-menu">
-                  <a href="#" className="channel-active-link">
+                  <a href="#option" className="channel-active-link">
                     Home
                   </a>
-                  <a href="#">Videos</a>
-                  <a href="#">Playlists</a>
-                  <a href="#">Channels</a>
-                  <a href="#">Discussion</a>
-                  <a href="#">About</a>
+                  <a href="#videos">Videos</a>
+                  <a href="#playlist">Playlists</a>
+                  <a href="#channels">Channels</a>
+                  <a href="#discussion">Discussion</a>
+                  <a href="#about">About</a>
                 </div>
 
                 <div className="channel-featured-content">
